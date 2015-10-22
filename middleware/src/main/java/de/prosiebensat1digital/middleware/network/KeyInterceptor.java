@@ -6,17 +6,23 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
+import de.prosiebensat1digital.middleware.TokenRepository;
+
 public class KeyInterceptor implements Interceptor {
-    private RequestSigner mRequestSigner;
-    
-    public KeyInterceptor(final RequestSigner inRequestSigner) {
+    private final TokenRepository mTokenRepository;
+    private       RequestSigner   mRequestSigner;
+
+    public KeyInterceptor(RequestSigner inRequestSigner, TokenRepository inTokenRepository) {
         mRequestSigner = inRequestSigner;
+        mTokenRepository = inTokenRepository;
     }
-    
+
     @Override
     public Response intercept(final Chain chain) throws IOException {
         Request request       = chain.request();
-        Request signedRequest = mRequestSigner.signRequest(request);
+        Request signedRequest = mRequestSigner.signRequest(request, mTokenRepository.getDeviceToken());
         return chain.proceed(signedRequest);
     }
 }
+
+

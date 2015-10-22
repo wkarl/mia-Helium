@@ -11,19 +11,15 @@ import okio.Buffer;
 public class RequestSigner {
     public static final String HEADER_KEY = "key";
 
-    private TokenRepository mTokenRepository;
     private long            mTimeDelta;
     private KeyGenerator    mKeyGenerator;
     
-    public RequestSigner(String inSecret, String inSecretId, TokenRepository inTokenRepository) {
+    public RequestSigner(String inSecret, String inSecretId) {
         mKeyGenerator = new KeyGenerator(inSecret, inSecretId);
-        mTokenRepository = inTokenRepository;
         mTimeDelta = 0;
     }
     
-    public Request signRequest(Request inRequest) throws IOException {
-        String deviceToken = mTokenRepository.getDeviceToken();
-        
+    public Request signRequest(Request inRequest, String deviceToken) throws IOException {
         String body = null;
         if (inRequest.body() != null) {
             // Read body as json string
@@ -45,9 +41,5 @@ public class RequestSigner {
     
     public void adjustLocalTime(long inServerTime) {
         mTimeDelta = inServerTime - System.currentTimeMillis();
-    }
-    
-    public void resetDeviceToken() {
-        mTokenRepository.resetDeviceToken();
     }
 }
