@@ -1,5 +1,7 @@
 package de.prosiebensat1digital.middleware;
 
+import android.text.format.DateUtils;
+
 import junit.framework.Assert;
 
 import org.junit.Before;
@@ -9,11 +11,10 @@ import de.prosiebensat1digital.middleware.config.Config;
 import de.prosiebensat1digital.middleware.mock.MockDeviceStore;
 import de.prosiebensat1digital.middleware.model.MiddlewareResult;
 import de.prosiebensat1digital.middleware.network.RequestSigner;
-import de.prosiebensat1digital.middleware.util.KeyGenerator;
 import retrofit.http.GET;
 
-public class MiddlewareTest extends Assert {
-    public static final long   MAX_TIMESTAMP_DELTA = 5 * 60 * 1000; // milliseconds
+public class MiddlewareIntegrationTest extends Assert {
+    public static final long   MAX_TIMESTAMP_DELTA = 5 * DateUtils.MINUTE_IN_MILLIS;
     public static final Config ENDPOINT            = new Config() {
         final String API_PREFIX = "/7tv/v2";
 
@@ -65,15 +66,6 @@ public class MiddlewareTest extends Assert {
         // Request settings with incorrect time delta
         result = api.getSettings().getResponse();
         assertNotNull(result);
-    }
-
-    @Test
-    public void signRequest() {
-        KeyGenerator generator = new KeyGenerator("secret", "secretId");
-        String key =
-                generator.generateKey("token", "get", "url", "body", 1445359906067l, 200l);
-        assertEquals(key,
-                "tokensecretId1445359906263e4efe16b259158610273e6f5abc28a5a78c2ae22a00b0f5b9adf976a30672");
     }
 
     private interface SettingsApi {
