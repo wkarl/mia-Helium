@@ -24,8 +24,7 @@ public class Middleware {
 
     Middleware(Config inConfig, RequestSigner inSigner, DeviceStore inDeviceStore) {
         mTokenRepository = new TokenRepository(inConfig, inDeviceStore);
-        RequestSigner signer = inSigner;
-        mRestAdapter = createRestAdapter(inConfig, signer, mTokenRepository);
+        mRestAdapter = createRestAdapter(inConfig, inSigner, mTokenRepository);
     }
 
     public void setTokenListener(OnDeviceTokenChangeListener inListener) {

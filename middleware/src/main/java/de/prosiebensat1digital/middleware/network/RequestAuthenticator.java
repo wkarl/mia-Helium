@@ -38,14 +38,10 @@ public class RequestAuthenticator implements Interceptor, Authenticator {
             long serverTime = Long.decode(response.header(HEADER_TIMESTAMP));
 
             mRequestSigner.adjustLocalTime(serverTime);
-            Request signedRequest = mRequestSigner.signRequest(response.request(), mTokenRepository.getDeviceToken());
-
-            return signedRequest;
+            return mRequestSigner.signRequest(response.request(), mTokenRepository.getDeviceToken());
         } else if (body.contains(DEVICE_ID_INVALID)) {
             mTokenRepository.resetDeviceToken();
-            Request signedRequest = mRequestSigner.signRequest(response.request(), mTokenRepository.getDeviceToken());
-
-            return signedRequest;
+            return mRequestSigner.signRequest(response.request(), mTokenRepository.getDeviceToken());
         }
 
         return null;

@@ -4,7 +4,6 @@ import com.squareup.okhttp.Request;
 
 import java.io.IOException;
 
-import de.prosiebensat1digital.middleware.TokenRepository;
 import de.prosiebensat1digital.middleware.util.KeyGenerator;
 import okio.Buffer;
 
