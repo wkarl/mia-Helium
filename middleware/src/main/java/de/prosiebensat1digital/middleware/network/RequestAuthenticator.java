@@ -14,36 +14,36 @@ public class RequestAuthenticator implements Interceptor, Authenticator {
     private static final String KEY_EXPIRED       = "KeyExpired";
     private static final String DEVICE_ID_INVALID = "DeviceIdInvalid";
     private static final String HEADER_TIMESTAMP  = "timestamp";
-
+    
     private static final int MAX_ATTEMPTS = 3;
-
+    
     private RequestSigner   mRequestSigner;
     private TokenRepository mTokenRepository;
     private int             mAttemptCount;
-
-    public RequestAuthenticator(RequestSigner inRequestSigner, TokenRepository inTokenRepository) {
-        mRequestSigner = inRequestSigner;
-        mTokenRepository = inTokenRepository;
+    
+    public RequestAuthenticator(RequestSigner requestSigner, TokenRepository tokenRepository) {
+        mRequestSigner = requestSigner;
+        mTokenRepository = tokenRepository;
     }
-
+    
     @Override
-    public Request authenticate(final Proxy proxy, final Response response) throws IOException {
+    public Request authenticate(Proxy proxy, Response response) throws IOException {
         if (mAttemptCount >= MAX_ATTEMPTS) {
             return null;
         }
         mAttemptCount++;
-
+        
         String body = response.body().string();
         if (body.contains(KEY_EXPIRED)) {
             long serverTime = Long.decode(response.header(HEADER_TIMESTAMP));
-
+            
             mRequestSigner.adjustLocalTime(serverTime);
             return mRequestSigner.signRequest(response.request(), mTokenRepository.getDeviceToken());
         } else if (body.contains(DEVICE_ID_INVALID)) {
             mTokenRepository.resetDeviceToken();
             return mRequestSigner.signRequest(response.request(), mTokenRepository.getDeviceToken());
         }
-
+        
         return null;
     }
     
@@ -53,7 +53,7 @@ public class RequestAuthenticator implements Interceptor, Authenticator {
         // Give up
         return null;
     }
-
+    
     @Override
     public Response intercept(final Chain chain) throws IOException {
         // Reset attempt counter on new calls

@@ -15,5 +15,5 @@ public interface ConfigStaticApi {
     MiddlewareResult<List<Service>> getServices();
     
     @POST("/devices")
-    MiddlewareResult<DeviceToken> registerDevice(@Body DeviceInfo inDeviceInfo);
+    MiddlewareResult<DeviceToken> registerDevice(@Body DeviceInfo deviceInfo);
 }

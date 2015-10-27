@@ -13,8 +13,8 @@ public class MockDeviceStore implements DeviceStore {
     }
     
     @Override
-    public void setDeviceToken(final String inDeviceToken) {
-        mDeviceToken = inDeviceToken;
+    public void setDeviceToken(final String deviceToken) {
+        mDeviceToken = deviceToken;
     }
     
     @Override
@@ -33,7 +33,7 @@ public class MockDeviceStore implements DeviceStore {
     }
     
     @Override
-    public void setDeviceInfo(final DeviceInfo inDeviceInfo) {
-        mDeviceInfo = inDeviceInfo;
+    public void setDeviceInfo(final DeviceInfo deviceInfo) {
+        mDeviceInfo = deviceInfo;
     }
 }

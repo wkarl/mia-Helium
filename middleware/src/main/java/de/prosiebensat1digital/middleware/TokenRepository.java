@@ -17,10 +17,10 @@ public class TokenRepository {
     
     private OnDeviceTokenChangeListener mListener;
     
-    protected TokenRepository(final Config inEndpointConfig, final DeviceStore inDeviceStore) {
-        mEndpointConfig = inEndpointConfig;
-        mDeviceStore = inDeviceStore;
-        mDeviceInfo = inDeviceStore.generateDeviceInfo();
+    protected TokenRepository(final Config endpointConfig, final DeviceStore deviceStore) {
+        mEndpointConfig = endpointConfig;
+        mDeviceStore = deviceStore;
+        mDeviceInfo = deviceStore.generateDeviceInfo();
     }
     
     public synchronized String getDeviceToken() {
@@ -59,18 +59,18 @@ public class TokenRepository {
         return mDeviceStore.getStoredDeviceInfo();
     }
     
-    public void storeDeviceInfo(DeviceInfo inDeviceInfo) {
-        mDeviceStore.setDeviceInfo(inDeviceInfo);
-        mDeviceInfo = inDeviceInfo;
+    public void storeDeviceInfo(DeviceInfo deviceInfo) {
+        mDeviceStore.setDeviceInfo(deviceInfo);
+        mDeviceInfo = deviceInfo;
     }
     
-    public void setListener(OnDeviceTokenChangeListener inListener) {
-        mListener = inListener;
+    public void setListener(OnDeviceTokenChangeListener listener) {
+        mListener = listener;
     }
     
-    private ConfigStaticApi getUtilApi(String inEndpoint) {
+    private ConfigStaticApi getUtilApi(String endpoint) {
         RestAdapter restAdapter = new RestAdapter.Builder()
-                .setEndpoint(inEndpoint)
+                .setEndpoint(endpoint)
                 .setConverter(new JacksonConverter())
                 .setLogLevel(Middleware.LOG_LEVEL)
                 .build();

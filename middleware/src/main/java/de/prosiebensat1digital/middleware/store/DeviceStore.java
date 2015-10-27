@@ -5,7 +5,7 @@ import de.prosiebensat1digital.middleware.model.DeviceInfo;
 public interface DeviceStore {
     String getDeviceToken();
     
-    void setDeviceToken(final String inDeviceToken);
+    void setDeviceToken(String deviceToken);
     
     void resetDeviceToken();
     
@@ -13,5 +13,5 @@ public interface DeviceStore {
     
     DeviceInfo getStoredDeviceInfo();
     
-    void setDeviceInfo(DeviceInfo inDeviceInfo);
+    void setDeviceInfo(DeviceInfo deviceInfo);
 }

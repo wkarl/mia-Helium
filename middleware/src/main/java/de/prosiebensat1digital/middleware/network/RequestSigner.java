@@ -9,36 +9,36 @@ import okio.Buffer;
 
 public class RequestSigner {
     public static final String HEADER_KEY = "key";
-
-    private long            mTimeDelta;
-    private KeyGenerator    mKeyGenerator;
     
-    public RequestSigner(String inSecret, String inSecretId) {
-        mKeyGenerator = new KeyGenerator(inSecret, inSecretId);
+    private long         mTimeDelta;
+    private KeyGenerator mKeyGenerator;
+    
+    public RequestSigner(String secret, String secretId) {
+        mKeyGenerator = new KeyGenerator(secret, secretId);
         mTimeDelta = 0;
     }
     
-    public Request signRequest(Request inRequest, String deviceToken) throws IOException {
+    public Request signRequest(Request request, String deviceToken) throws IOException {
         String body = null;
-        if (inRequest.body() != null) {
+        if (request.body() != null) {
             // Read body as json string
             Buffer buffer = new Buffer();
-            inRequest.body().writeTo(buffer);
+            request.body().writeTo(buffer);
             body = buffer.readUtf8();
         }
-
+        
         // Generate Key
         String key = mKeyGenerator
-              .generateKey(deviceToken, inRequest.method(), inRequest.urlString(), body,
-                    System.currentTimeMillis(), mTimeDelta);
+                .generateKey(deviceToken, request.method(), request.urlString(), body,
+                        System.currentTimeMillis(), mTimeDelta);
         
-        return inRequest.newBuilder()
+        return request.newBuilder()
                 .removeHeader(HEADER_KEY)   // Disallow duplicate "key" headers
                 .addHeader(HEADER_KEY, key)
                 .build();
     }
     
-    public void adjustLocalTime(long inServerTime) {
-        mTimeDelta = inServerTime - System.currentTimeMillis();
+    public void adjustLocalTime(long serverTime) {
+        mTimeDelta = serverTime - System.currentTimeMillis();
     }
 }
