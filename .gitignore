@@ -4,10 +4,6 @@ build
 # Maven artifact
 maven
 
-# gradle
-gradlew*
-gradle/
-
 # Android Studio local
 local.properties
 .gradle
