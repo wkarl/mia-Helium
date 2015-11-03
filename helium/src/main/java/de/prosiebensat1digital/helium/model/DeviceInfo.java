@@ -53,6 +53,14 @@ public class DeviceInfo {
         private String mModel;
         private Platform mPlatform;
 
+        public String getModel() {
+            return mModel;
+        }
+
+        public Platform getPlatform() {
+            return mPlatform;
+        }
+
         public Device(@JsonProperty("model") String inModel, @JsonProperty("os") Platform inPlatform) {
             mModel = inModel;
             mPlatform = inPlatform;
