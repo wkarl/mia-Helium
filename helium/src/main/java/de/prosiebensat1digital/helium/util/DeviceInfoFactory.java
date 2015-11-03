@@ -9,7 +9,11 @@ import de.prosiebensat1digital.helium.model.DeviceInfo;
 public class DeviceInfoFactory {
     public static final String PLATFORM_NAME = "Android";
     public static final String APP_NAME      = "7TVAndroid";
-    
+
+    private DeviceInfoFactory() {
+        // Remove ability to instantiate class
+    }
+
     public static DeviceInfo create(Context context) {
         String versionName = getVersionName(context);
         return new DeviceInfo(APP_NAME, versionName, Build.MODEL, PLATFORM_NAME, String.valueOf(Build.VERSION.SDK_INT));
