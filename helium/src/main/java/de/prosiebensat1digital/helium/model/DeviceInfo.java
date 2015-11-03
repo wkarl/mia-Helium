@@ -3,8 +3,6 @@ package de.prosiebensat1digital.helium.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import de.prosiebensat1digital.helium.util.CompareUtils;
-
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DeviceInfo {
     private App mApp;
