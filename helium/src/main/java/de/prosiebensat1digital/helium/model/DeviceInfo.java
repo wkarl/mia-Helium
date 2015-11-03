@@ -7,8 +7,16 @@ import de.prosiebensat1digital.helium.util.CompareUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DeviceInfo {
-    public App mApp;
-    public Device mDevice;
+    private App mApp;
+    private Device mDevice;
+
+    public App getApp() {
+        return mApp;
+    }
+
+    public Device getDevice() {
+        return mDevice;
+    }
 
     public DeviceInfo(@JsonProperty("app") App inApp, @JsonProperty("device") Device inDevice) {
         mApp = inApp;
@@ -23,8 +31,16 @@ public class DeviceInfo {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class App {
-        public String mName;
-        public String mVersion;
+        private String mName;
+        private String mVersion;
+
+        public String getName() {
+            return mName;
+        }
+
+        public String getVersion() {
+            return mVersion;
+        }
 
         public App(@JsonProperty("id") String inName, @JsonProperty("version") String inVersion) {
             mName = inName;
@@ -34,8 +50,8 @@ public class DeviceInfo {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Device {
-        public String mModel;
-        public Platform mPlatform;
+        private String mModel;
+        private Platform mPlatform;
 
         public Device(@JsonProperty("model") String inModel, @JsonProperty("os") Platform inPlatform) {
             mModel = inModel;
@@ -45,8 +61,17 @@ public class DeviceInfo {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Platform {
-        public String mType;
-        public String mVersion;
+        private String mType;
+
+        public String getVersion() {
+            return mVersion;
+        }
+
+        public String getType() {
+            return mType;
+        }
+
+        private String mVersion;
 
         public Platform(@JsonProperty("type") String inType, @JsonProperty("version") String inVersion) {
             mType = inType;
