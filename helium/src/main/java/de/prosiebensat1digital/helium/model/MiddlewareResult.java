@@ -5,10 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MiddlewareResult<T> {
-    @JsonProperty("status")
     private int mStatus;
-    @JsonProperty("response")
     private T   mResponse;
+    
+    public MiddlewareResult(@JsonProperty("status") int status, @JsonProperty("response") T response) {
+        mStatus = status;
+        mResponse = response;
+    }
     
     public int getStatus() {
         return mStatus;
