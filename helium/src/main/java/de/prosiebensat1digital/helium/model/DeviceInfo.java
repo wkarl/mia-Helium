@@ -43,6 +43,12 @@ public class DeviceInfo {
         public App(@JsonProperty("id") String inName, @JsonProperty("version") String inVersion) {
             mName = inName;
             mVersion = inVersion;
+            
+            // Filter version name: remove everything after hyphen
+            int pos = mVersion.indexOf("-");
+            if (pos > 0) {
+                mVersion = mVersion.substring(0, pos);
+            }
         }
     }
 
