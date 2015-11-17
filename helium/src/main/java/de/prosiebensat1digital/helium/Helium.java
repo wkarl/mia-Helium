@@ -1,16 +1,17 @@
 package de.prosiebensat1digital.helium;
 
+import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 
 import de.prosiebensat1digital.helium.callback.OnDeviceTokenChangeListener;
 import de.prosiebensat1digital.helium.config.Config;
-import de.prosiebensat1digital.helium.network.JsonConverter;
 import de.prosiebensat1digital.helium.network.KeyInterceptor;
 import de.prosiebensat1digital.helium.network.RequestAuthenticator;
 import de.prosiebensat1digital.helium.network.RequestSigner;
 import de.prosiebensat1digital.helium.store.DeviceStore;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
+import retrofit.converter.GsonConverter;
 
 public class Helium {
     public static final RestAdapter.LogLevel LOG_LEVEL = RestAdapter.LogLevel.FULL;
@@ -47,7 +48,7 @@ public class Helium {
         return new RestAdapter.Builder()
                 .setClient(new OkClient(client))
                 .setEndpoint(inConfig.getEndpoint())
-                .setConverter(new JsonConverter())
+                .setConverter(new GsonConverter(new Gson()))
                 .setLogLevel(LOG_LEVEL)
                 .build();
     }

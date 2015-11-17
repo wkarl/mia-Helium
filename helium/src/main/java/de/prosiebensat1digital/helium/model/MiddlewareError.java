@@ -1,15 +1,13 @@
 package de.prosiebensat1digital.helium.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class MiddlewareError {
-    @JsonProperty("status")
+    @SerializedName("status")
     private int         mStatus;
-    @JsonProperty("errors")
+    @SerializedName("errors")
     private List<Error> mErrors;
     
     public int getStatus() {
@@ -20,11 +18,10 @@ public class MiddlewareError {
         return mErrors.get(0);
     }
     
-    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Error {
-        @JsonProperty("code")
+        @SerializedName("code")
         private String mCode;
-        @JsonProperty("msg")
+        @SerializedName("msg")
         private String mMessage;
         
         public String getCode() {

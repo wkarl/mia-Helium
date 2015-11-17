@@ -1,5 +1,7 @@
 package de.prosiebensat1digital.helium;
 
+import com.google.gson.Gson;
+
 import de.prosiebensat1digital.helium.apiinterface.ConfigStaticApi;
 import de.prosiebensat1digital.helium.callback.OnDeviceTokenChangeListener;
 import de.prosiebensat1digital.helium.config.Config;
@@ -7,7 +9,7 @@ import de.prosiebensat1digital.helium.model.DeviceInfo;
 import de.prosiebensat1digital.helium.model.DeviceToken;
 import de.prosiebensat1digital.helium.store.DeviceStore;
 import retrofit.RestAdapter;
-import retrofit.converter.JacksonConverter;
+import retrofit.converter.GsonConverter;
 
 public class TokenRepository {
     private Config      mEndpointConfig;
@@ -71,7 +73,7 @@ public class TokenRepository {
     private ConfigStaticApi getUtilApi(String endpoint) {
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint(endpoint)
-                .setConverter(new JacksonConverter())
+                .setConverter(new GsonConverter(new Gson()))
                 .setLogLevel(Helium.LOG_LEVEL)
                 .build();
         return restAdapter.create(ConfigStaticApi.class);

@@ -1,14 +1,12 @@
 package de.prosiebensat1digital.helium.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
-@JsonIgnoreProperties (ignoreUnknown = true)
 public class Service {
-   @JsonProperty ("id")
+   @SerializedName("id")
    public String id;
 
-   @JsonProperty ("url")
+   @SerializedName("url")
    private String mUrl;
 
    public String getId() {

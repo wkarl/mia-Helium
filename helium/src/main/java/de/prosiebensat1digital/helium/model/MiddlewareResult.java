@@ -1,14 +1,14 @@
 package de.prosiebensat1digital.helium.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class MiddlewareResult<T> {
+    @SerializedName("status")
     private int mStatus;
+    @SerializedName("response")
     private T   mResponse;
     
-    public MiddlewareResult(@JsonProperty("status") int status, @JsonProperty("response") T response) {
+    public MiddlewareResult(int status, T response) {
         mStatus = status;
         mResponse = response;
     }

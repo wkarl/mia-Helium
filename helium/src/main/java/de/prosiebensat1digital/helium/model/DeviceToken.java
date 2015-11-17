@@ -1,11 +1,9 @@
 package de.prosiebensat1digital.helium.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class DeviceToken {
-    @JsonProperty("id")
+    @SerializedName("id")
     private String mId;
     
     public String getId() {

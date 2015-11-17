@@ -1,11 +1,11 @@
 package de.prosiebensat1digital.helium.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class DeviceInfo {
+    @SerializedName("app")
     private App mApp;
+    @SerializedName("device")
     private Device mDevice;
 
     public App getApp() {
@@ -16,7 +16,7 @@ public class DeviceInfo {
         return mDevice;
     }
 
-    public DeviceInfo(@JsonProperty("app") App inApp, @JsonProperty("device") Device inDevice) {
+    public DeviceInfo(App inApp, Device inDevice) {
         mApp = inApp;
         mDevice = inDevice;
     }
@@ -27,9 +27,10 @@ public class DeviceInfo {
         mDevice = new Device(inModel, new Platform(inPlatformName, inPlatformVersion));
     }
 
-    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class App {
+        @SerializedName("id")
         private String mName;
+        @SerializedName("version")
         private String mVersion;
 
         public String getName() {
@@ -40,10 +41,10 @@ public class DeviceInfo {
             return mVersion;
         }
 
-        public App(@JsonProperty("id") String inName, @JsonProperty("version") String inVersion) {
+        public App(String inName, String inVersion) {
             mName = inName;
             mVersion = inVersion;
-            
+
             // Filter version name: remove everything after hyphen
             int pos = mVersion.indexOf("-");
             if (pos > 0) {
@@ -52,9 +53,10 @@ public class DeviceInfo {
         }
     }
 
-    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Device {
+        @SerializedName("model")
         private String mModel;
+        @SerializedName("os")
         private Platform mPlatform;
 
         public String getModel() {
@@ -65,14 +67,14 @@ public class DeviceInfo {
             return mPlatform;
         }
 
-        public Device(@JsonProperty("model") String inModel, @JsonProperty("os") Platform inPlatform) {
+        public Device(String inModel, Platform inPlatform) {
             mModel = inModel;
             mPlatform = inPlatform;
         }
     }
 
-    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Platform {
+        @SerializedName("type")
         private String mType;
 
         public String getVersion() {
@@ -83,9 +85,10 @@ public class DeviceInfo {
             return mType;
         }
 
+        @SerializedName("version")
         private String mVersion;
 
-        public Platform(@JsonProperty("type") String inType, @JsonProperty("version") String inVersion) {
+        public Platform(String inType, String inVersion) {
             mType = inType;
             mVersion = inVersion;
         }
