@@ -14,9 +14,9 @@ public class AndroidDeviceStore implements DeviceStore {
     private static final String KEY_DEVICE_TOKEN = "device_token";
     private static final String KEY_DEVICE_INFO = "device_info";
 
-    private SharedPreferences mSharedPreferences;
-    private DeviceInfo mGeneratedDeviceInfo;
-    private Gson mGson;
+    private SharedPreferences   mSharedPreferences;
+    private DeviceInfo          mGeneratedDeviceInfo;
+    private Gson                mGson;
 
     public AndroidDeviceStore(final Context context) {
         mSharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);

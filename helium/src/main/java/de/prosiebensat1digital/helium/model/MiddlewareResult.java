@@ -7,12 +7,7 @@ public class MiddlewareResult<T> {
     private int mStatus;
     @SerializedName("response")
     private T   mResponse;
-    
-    public MiddlewareResult(int status, T response) {
-        mStatus = status;
-        mResponse = response;
-    }
-    
+
     public int getStatus() {
         return mStatus;
     }
