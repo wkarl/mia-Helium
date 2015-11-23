@@ -33,4 +33,9 @@
   <Match>
     <Class name="~.*\.*RecyclerViewFastScroller.*" />
   </Match>
+  
+  <!-- Ignore all SF_SWITCH_NO_DEFAULT violations -->
+  <Match>
+    <Bug pattern="SF_SWITCH_NO_DEFAULT"/>
+  </Match>
 </FindBugsFilter>
