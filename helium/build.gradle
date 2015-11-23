@@ -32,7 +32,7 @@ dependencies {
 uploadArchives {
     repositories.mavenDeployer {
         pom.groupId = 'de.prosiebensat1digital'
-        pom.artifactId = 'helium'
+        pom.artifactId = project.name
         pom.version = android.defaultConfig.versionName
         
         repository(url: '$buildDir//maven')
