@@ -48,7 +48,7 @@ public class TokenRepository {
         return mDeviceToken;
     }
     
-    public void resetDeviceToken() {
+    public synchronized void resetDeviceToken() {
         mDeviceToken = null;
         mDeviceStore.resetDeviceToken();
     }
@@ -66,7 +66,7 @@ public class TokenRepository {
         mDeviceInfo = deviceInfo;
     }
     
-    public void setListener(OnDeviceTokenChangeListener listener) {
+    public synchronized void setListener(OnDeviceTokenChangeListener listener) {
         mListener = listener;
     }
     

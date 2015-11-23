@@ -3,6 +3,7 @@ package de.prosiebensat1digital.helium.util;
 import android.text.format.DateUtils;
 
 import java.math.BigInteger;
+import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
@@ -28,7 +29,7 @@ public class KeyGenerator {
     private String sha256encode(String text) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
-            md.update(text.toLowerCase(Locale.ENGLISH).getBytes());
+            md.update(text.toLowerCase(Locale.ENGLISH).getBytes(Charset.defaultCharset()));
             byte[] digest = md.digest();
             return String.format("%0" + (digest.length * 2) + "X", new BigInteger(1, digest))
                     .toLowerCase(Locale.ENGLISH);
