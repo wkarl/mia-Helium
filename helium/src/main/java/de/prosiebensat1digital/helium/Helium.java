@@ -5,6 +5,7 @@ import com.squareup.okhttp.OkHttpClient;
 
 import de.prosiebensat1digital.helium.callback.OnDeviceTokenChangeListener;
 import de.prosiebensat1digital.helium.config.Config;
+import de.prosiebensat1digital.helium.model.DeviceInfo;
 import de.prosiebensat1digital.helium.network.KeyInterceptor;
 import de.prosiebensat1digital.helium.network.RequestAuthenticator;
 import de.prosiebensat1digital.helium.network.RequestSigner;
@@ -27,7 +28,15 @@ public class Helium {
         mTokenRepository = new TokenRepository(inConfig, inDeviceStore);
         mRestAdapter = createRestAdapter(inConfig, inSigner, mTokenRepository);
     }
-    
+
+    public String getDeviceToken() {
+        return mTokenRepository.getDeviceToken();
+    }
+
+    public DeviceInfo getDeviceInfo() {
+        return mTokenRepository.getCurrentDeviceInfo();
+    }
+
     public void setTokenListener(OnDeviceTokenChangeListener inListener) {
         mTokenRepository.setListener(inListener);
     }
