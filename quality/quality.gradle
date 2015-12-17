@@ -3,6 +3,12 @@ apply plugin: 'findbugs'
 // Run findBugs + lint with gradle task check
 check.dependsOn 'findBugs', 'lint'
 
+// Treat all warnings as errors
+tasks.withType(JavaCompile).all {
+    options.compilerArgs << "-Xlint:all"
+    options.compilerArgs << "-Werror"
+}
+
 // Find bugs task
 task findBugs(type: FindBugs) {
     // Description
