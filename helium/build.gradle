@@ -35,6 +35,6 @@ uploadArchives {
         pom.artifactId = project.name
         pom.version = android.defaultConfig.versionName
         
-        repository(url: '$buildDir//maven')
+        repository(url: 'file://maven')
     }
 }
