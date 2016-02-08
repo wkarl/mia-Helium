@@ -7,10 +7,10 @@ android {
     buildToolsVersion '23.0.2'
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 10
         targetSdkVersion 23
-        versionCode 6
-        versionName "0.9.6"
+        versionCode 1
+        versionName "1.0"
     }
 
     buildTypes {
@@ -27,14 +27,5 @@ dependencies {
 
     // Unit Testing
     testCompile 'junit:junit:4.12'
-}
-
-uploadArchives {
-    repositories.mavenDeployer {
-        pom.groupId = 'de.prosiebensat1digital'
-        pom.artifactId = project.name
-        pom.version = android.defaultConfig.versionName
-        
-        repository(url: 'file://maven')
-    }
+    testCompile 'com.squareup.okhttp:mockwebserver:2.4.0'
 }

@@ -5,7 +5,7 @@ import subprocess
 
 from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice
 
-PACKAGE  = 'de.prosiebensat1digital.seventv'
+PACKAGE  = 'sevenfactory.seventv'
 ACTIVITY = '.activity.MainActivity'
 
 SETTLE_DELAY   = 1
