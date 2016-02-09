@@ -10,13 +10,16 @@ public class TodoRepository {
     private Api mApi;
 
     public TodoRepository(Helium helium) {
+        // Instantiate the API
         mApi = helium.createApi(Api.class);
     }
 
+    // Method for abstracting the MiddlewareResult object
     public List<TodoItem> getTodoItems() {
         return mApi.fetchTodoItems().getResponse();
     }
 
+    // Retrofit interface definition for our API
     public interface Api {
         @GET("/todo")
         MiddlewareResult<List<TodoItem>> fetchTodoItems();
