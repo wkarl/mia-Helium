@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <lint>
-  
+  <!-- Ignore Invalid Package of OkIO Library -->
+  <issue id="InvalidPackage">
+    <ignore path="*/okio-1.4.0.jar"/>
+  </issue>
 </lint>
